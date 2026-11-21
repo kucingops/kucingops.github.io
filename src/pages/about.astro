@@ -1,0 +1,14 @@
+---
+import Base from '../layouts/Base.astro';
+import Window from '../components/Window.astro';
+import { SOCIALS } from '../consts';
+---
+<Base title="About">
+  <Window title="👋 About">
+    <div class="prose">
+      <p>Saya bukan orang super pintar yang menemukan hal baru, bukan juga yang menyelesaikan semua soal LeetCode, dan saya tidak kuliah di kampus top. Di blog ini saya berbagi apa yang saya pelajari saat mencoba memahami konsep dan bagaimana sebuah sistem bekerja.</p>
+      <p>AI agent sekarang bisa menulis banyak kode, tapi manusia tetap perlu memahami apa yang dibangun, menjelaskannya ke orang lain, menangani edge case, dan memutuskan langkah berikutnya. Kalau ada yang keliru, silakan koreksi saya.</p>
+      <p>Kontak: <a href={SOCIALS.github}>GitHub</a> · <a href={SOCIALS.linkedin}>LinkedIn</a> · <a href={SOCIALS.email}>Email</a></p>
+    </div>
+  </Window>
+</Base>

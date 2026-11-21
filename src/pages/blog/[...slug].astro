@@ -1,0 +1,29 @@
+---
+import { render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Window from '../../components/Window.astro';
+import { getPosts, formatDate, readingTime } from '../../utils';
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+const { post } = Astro.props;
+const { Content } = await render(post);
+const { title, description, pubDate, updatedDate, tags } = post.data;
+---
+<Base title={title} description={description}>
+  <p><a href="/blog/">← Kembali ke blog</a></p>
+  <Window title={`📄 ${title}`} as="article">
+    <header class="post-head">
+      <h1>{title}</h1>
+      <p class="muted">
+        <time datetime={pubDate.toISOString()}>{formatDate(pubDate)}</time>
+        {updatedDate && <> · diperbarui {formatDate(updatedDate)}</>}{" "}
+        · {readingTime(post.body)}
+      </p>
+      {tags.length > 0 && <p class="tags">{tags.map((t) => <a href={`/tags/${t}/`}>#{t}</a>)}</p>}
+    </header>
+    <div class="prose"><Content /></div>
+  </Window>
+</Base>

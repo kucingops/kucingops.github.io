@@ -1,0 +1,11 @@
+---
+interface Props { title: string; as?: string }
+const { title, as: Tag = 'section' } = Astro.props;
+---
+<Tag class="window">
+  <div class="title-bar">
+    <span class="title-bar-text">{title}</span>
+    <span class="title-bar-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+  </div>
+  <div class="window-body"><slot /></div>
+</Tag>

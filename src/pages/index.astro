@@ -1,0 +1,35 @@
+---
+import Base from '../layouts/Base.astro';
+import Window from '../components/Window.astro';
+import PostList from '../components/PostList.astro';
+import { getPosts } from '../utils';
+const posts = (await getPosts()).slice(0, 5);
+const projects = [
+  { name: 'mini-bank', desc: 'Transfer dana terdistribusi dengan deteksi fraud real-time (microservices).' },
+  { name: 'catsheet', desc: 'Cheatsheet persiapan interview dengan contoh kode yang bisa dijalankan.' },
+  { name: 'landing-page-1', desc: 'Portfolio SvelteKit, PWA offline, Lighthouse 100.' },
+];
+---
+<Base>
+  <Window title="✨ Welcome">
+    <div class="hero">
+      <img src="https://github.com/kucingops.png" alt="Foto profil kucingops" width="120" height="120" />
+      <div>
+        <h1>Hi, saya Hilmi</h1>
+        <p class="lead">Backend engineer · Java, Spring Boot, Quarkus, Kafka</p>
+        <p class="muted">Building reliable systems in a chaotic world. Di sini saya menulis apa yang saya pelajari, lengkap dengan sumbernya.</p>
+      </div>
+    </div>
+  </Window>
+  <Window title="📝 Tulisan terbaru">
+    <PostList posts={posts} />
+    <p><a href="/blog/">Semua tulisan →</a></p>
+  </Window>
+  <Window title="🛠️ Proyek">
+    <ul class="post-list">
+      {projects.map((p) => (
+        <li><a href={`https://github.com/kucingops/${p.name}`}>{p.name}</a><p>{p.desc}</p></li>
+      ))}
+    </ul>
+  </Window>
+</Base>
