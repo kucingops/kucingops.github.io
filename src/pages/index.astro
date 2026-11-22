@@ -4,10 +4,6 @@ import Window from '../components/Window.astro';
 import PostList from '../components/PostList.astro';
 import { getPosts } from '../utils';
 const posts = (await getPosts()).slice(0, 5);
-const projects = [
-  { name: 'mini-bank', desc: 'Transfer dana terdistribusi dengan deteksi fraud real-time (microservices).' },
-  { name: 'catsheet', desc: 'Cheatsheet persiapan interview dengan contoh kode yang bisa dijalankan (Java, PHP, .NET, JS).' },
-];
 ---
 <Base>
   <Window title="✨ Welcome">
@@ -23,12 +19,5 @@ const projects = [
   <Window title="📝 Tulisan terbaru">
     <PostList posts={posts} />
     <p><a href="/blog/">Semua tulisan →</a></p>
-  </Window>
-  <Window title="🛠️ Proyek">
-    <ul class="post-list">
-      {projects.map((p) => (
-        <li><a href={`https://github.com/kucingops/${p.name}`}>{p.name}</a><p>{p.desc}</p></li>
-      ))}
-    </ul>
   </Window>
 </Base>
